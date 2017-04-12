@@ -1,4 +1,5 @@
 from urllib.request import urlopen, urlretrieve
+import urllib.error
 from bs4 import BeautifulSoup
 
 # if query is not None:
@@ -74,13 +75,17 @@ class MyLazyBookScraper:
             for link in all_links_from_page:
                 if link.get('target'):
                     if '.pdf' in link.get('href'):
-                        print("Downloading: " + title)
-                        urlretrieve(link.get('href'), self.download_path + title)
-                        print(title + ": Downloaded")
-
+                        try:
+                            print("Downloading: " + title)
+                            urlretrieve(link.get('href'), self.download_path + title)
+                            print(title + ": Downloaded")
+                        except urllib.error.HTTPError:
+                            continue
     def fix_paginator_links(self, pagination):
+        first_link = self.url + '?s=' + self.query
         last_link = pagination[len(pagination)-1]
         self.paginator_links = []
+        self.paginator_links.append(first_link)
         for i in range(len(pagination)):
             if i == 0 or i == 1:
                 pass
