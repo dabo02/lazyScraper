@@ -2,37 +2,6 @@ from urllib.request import urlopen, urlretrieve
 import urllib.error
 from bs4 import BeautifulSoup
 
-# if query is not None:
-#     url = url + '?s=' + query
-#
-# html = urlopen(url)
-# first_traverse = BeautifulSoup(html, 'html.parser')
-# all_links_page_1 = first_traverse.find_all('a')
-# paginator_links = []
-# links_needed_page_1 = []
-# for link in all_links_page_1:
-#     if link.get('rel') == ['bookmark']:
-#         links_needed_page_1.append(link.get('href'))
-#     elif link.get('href') is not None and link.get('title') and ('page' in link.get('href')):
-#         paginator_links.append(link.get('href'))
-#
-# second_traverse = []
-# for link in links_needed_page_1:
-#     tmp = BeautifulSoup(urlopen(link), 'html.parser')
-#     second_traverse.append(tmp)
-#
-# all_links_page_2 = []
-# links_needed_page_2 = []
-# for bsObject in second_traverse:
-#     all_links_page_2 = bsObject.find_all('a')
-#     title = bsObject.title.string
-#     title = title.replace(" ", "") + '.pdf'
-#     for link in all_links_page_2:
-#         if link.get('target'):
-#             if '.pdf' in link.get('href'):
-#                 print("Downloading: " + title)
-#                 urlretrieve(link.get('href'), '/home/dabo02/Downloads/MyShit/' + title)
-#                 print(title + ": Downloaded")
 
 class MyLazyBookScraper:
 
